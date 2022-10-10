@@ -1,15 +1,14 @@
 import { useState } from 'react';
 
 import FormInput from '../form-input/form-input.component';
-
 import Button from '../button/button.component';
 
 import {
-	createUserDocumentFromAuth,
 	createAuthUserWithEmailAndPassword,
-} from '../../utils/firebase/firebase.util';
+	createUserDocumentFromAuth,
+} from '../../utils/firebase/firebase.utils';
 
-import './sign-up-form.styles.scss';
+import { SignUpContainer } from './sign-up-form.styles';
 
 const defaultFormFields = {
 	displayName: '',
@@ -46,7 +45,7 @@ const SignUpForm = () => {
 			if (error.code === 'auth/email-already-in-use') {
 				alert('Cannot create user, email already in use');
 			} else {
-				console.log('user creation encountered error: ', error);
+				console.log('user creation encountered an error', error);
 			}
 		}
 	};
@@ -58,18 +57,18 @@ const SignUpForm = () => {
 	};
 
 	return (
-		<div className="sign-up-container">
-			<h2>Don't have an account ?</h2>
+		<SignUpContainer>
+			<h2>Don't have an account?</h2>
 			<span>Sign up with your email and password</span>
 			<form onSubmit={handleSubmit}>
 				<FormInput
-					label="Name"
+					label="Display Name"
 					type="text"
 					required
 					onChange={handleChange}
 					name="displayName"
 					value={displayName}
-				></FormInput>
+				/>
 
 				<FormInput
 					label="Email"
@@ -78,7 +77,7 @@ const SignUpForm = () => {
 					onChange={handleChange}
 					name="email"
 					value={email}
-				></FormInput>
+				/>
 
 				<FormInput
 					label="Password"
@@ -87,7 +86,7 @@ const SignUpForm = () => {
 					onChange={handleChange}
 					name="password"
 					value={password}
-				></FormInput>
+				/>
 
 				<FormInput
 					label="Confirm Password"
@@ -96,10 +95,10 @@ const SignUpForm = () => {
 					onChange={handleChange}
 					name="confirmPassword"
 					value={confirmPassword}
-				></FormInput>
+				/>
 				<Button type="submit">Sign Up</Button>
 			</form>
-		</div>
+		</SignUpContainer>
 	);
 };
 
