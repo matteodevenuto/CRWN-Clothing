@@ -1,7 +1,5 @@
 import { useState } from 'react';
 
-import { Redirect } from 'react-router-dom';
-
 import FormInput from '../form-input/form-input.component';
 import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component';
 
@@ -27,7 +25,6 @@ const SignInForm = () => {
 
 	const signInWithGoogle = async () => {
 		await signInWithGooglePopup();
-		<Redirect to="/" />;
 	};
 
 	const handleSubmit = async (event) => {
@@ -36,7 +33,6 @@ const SignInForm = () => {
 		try {
 			await signInAuthUserWithEmailAndPassword(email, password);
 			resetFormFields();
-			<Redirect to="/" />;
 		} catch (error) {
 			console.log('user sign in failed', error);
 		}
